@@ -13,20 +13,30 @@ import { redirect } from "next/navigation";
 
 
    // const userInfo = {}
-    if (!user) return null;
-    
-   const userInfo = await databases.getDocument('6531ae9269b930cf1b6f','6531aea7438566ac3a5a', `${userId}`);
-    if(!userInfo) return null;
-     if (userInfo.onboarded) redirect("/");
-
+   if (!userId) {
+    // Handle the case where the user ID is not available
+    return null;
+  }
+  
+  const userInfo = await databases.getDocument('6531ae9269b930cf1b6f', '6531aea7438566ac3a5a', `${userId}`);
+  
+  if (!userInfo) {
+    // Handle the case where user information doesn't exist in the database
+    return null;
+  } else {
+    if (userInfo) {
+      // If the user is onboarded, redirect to a specific page
+      redirect("/");
+    }
+  }
 
     const userData = {
-        id: user.id,
+        id: user?.id,
         objectId: userInfo?._id,
-        username: userInfo ? userInfo?.username : user.username,
-        name: userInfo ? userInfo?.name : user.firstName ?? "",
+        username: userInfo ? userInfo?.username : user?.username,
+        name: userInfo ? userInfo?.name : user?.firstName ?? "",
         bio: userInfo ? userInfo?.bio : "",
-        image: userInfo ? userInfo?.image : user.imageUrl,
+        image: userInfo ? userInfo?.image : user?.imageUrl,
       };
 
    
