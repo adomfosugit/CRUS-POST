@@ -9,18 +9,16 @@ async function Page() {
   const {userId} = auth()
   if (!user) return null;
 
-  // fetch organization list created by users
- // const userInfo = await clientsanity.fetch(`*[_type == "user" && id == "${userId}" ]`);
 
- const userInfo = await databases.getDocument('6531ae9269b930cf1b6f','6531aea7438566ac3a5a', `${userId}`);
+// const userInfo =await databases.getDocument('6531ae9269b930cf1b6f','6531aea7438566ac3a5a', `${userId}`);
   
-  if (!userInfo?.onboarded) redirect("/onboarding");
+  //if (!userInfo?.onboarded) redirect("/onboarding");
 
   return (
     <>
       <h1 className='head-text'>Create Thread</h1>
 
-      <PostThread userId={userInfo.id}
+      <PostThread userId={userId}
         />
     </>
   );

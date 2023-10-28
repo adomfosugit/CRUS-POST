@@ -1,5 +1,6 @@
 'use client'
 import ThreadCard from "@/components/cards/ThreadCard";
+import AccountProfile from "@/components/forms/AccountProfile";
 import { databases } from "@/lib/clientConfig";
 import { useUser } from "@clerk/nextjs";
 import { Query } from "appwrite";
@@ -20,7 +21,7 @@ export interface Data {
 
 
 export default  function Home() {
-  const {user} = useUser()
+  const {user,isSignedIn} = useUser()
   
   
   
@@ -74,6 +75,8 @@ export default  function Home() {
      <h1 className="head-text text-left">
       Home 
      </h1>
+     
+     
      <section className="mt-9 flex flex-col gap-10">
       {thread.length === 0 ? (<p className="text-light-2">No Todos found</p>) : 
 

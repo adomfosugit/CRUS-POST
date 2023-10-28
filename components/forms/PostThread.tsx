@@ -19,7 +19,7 @@ import { Textarea } from "@/components/ui/textarea";
 
 import { ThreadValidation } from "@/lib/validations/thread";
 import { databases } from "@/lib/clientConfig";
-import { ID } from "appwrite";
+
 
 
 interface Props {
